@@ -55,6 +55,7 @@ variable "max_unavailable_node" {
 }
 
 variable "aws_launch_template_id" {
+  type = string
 }
 
 

@@ -47,6 +47,6 @@ resource "aws_eks_cluster" "eks_cluster" {
     ignore_changes = [
       access_config[0].bootstrap_cluster_creator_admin_permissions
     ]
-    prevent_destroy = true
+    #prevent_destroy = true
   }
 }

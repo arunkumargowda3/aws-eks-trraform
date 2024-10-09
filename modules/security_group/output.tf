@@ -8,3 +8,8 @@ output "id_security_nodegroup" {
   value = aws_security_group.nodegroup-sg[*].id
 
 }
+
+output "id_ec2_security" {
+  value = aws_security_group.ec2-sg[*].id
+  
+}

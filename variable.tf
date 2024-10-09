@@ -126,3 +126,15 @@ variable "max_unavailable_node" {
 
 }
 
+
+####EC2
+variable "ami_ec2" {
+    type = string
+    default = "ami-0fff1b9a61dec8a5f"
+}
+
+variable "instance_type_ec2" {
+    type = string
+    default = "t2.micro"
+}
+

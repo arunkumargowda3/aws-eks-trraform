@@ -29,8 +29,24 @@ module "ssh" {
 module "security_group" {
   source     = "./modules/security_group"
   vpc_id     = module.vpc.id_of_vpc
+  app_name = var.app_name
   depends_on = [module.vpc]
 }
+
+
+module "ec2" {
+  source = "./modules/EC2"
+  security_group_ec2 = module.security_group.id_ec2_security
+  key_name = module.ssh.key_name
+  ec2_subnets = module.vpc.id_of_public_subnet
+  app_name = var.app_name
+  env = var.env
+  ami_ec2 = var.ami_ec2
+  subnet_azs = var.subnet_azs
+  instance_type_ec2 = var.instance_type_ec2
+}
+
+
 
 module "iam" {
   source       = "./modules/IAM"
@@ -54,7 +70,7 @@ module "aws_launch_template" {
   node_name                   = var.node_name
   cluster_name                = var.cluster_name
   env                         = var.env
-  depends_on                  = [module.security_group, module.ssh]
+  #depends_on                  = [module.security_group, module.ssh]
 }
 
 module "eks" {
@@ -78,58 +94,5 @@ module "eks" {
   min_size               = var.min_size
   max_size               = var.max_size
   max_unavailable_node   = var.max_unavailable_node
-  depends_on             = [module.vpc, module.aws_launch_template, module.iam, module.security_group, module.ssh, ]
+ # depends_on             = [module.vpc, module.aws_launch_template, module.iam, module.security_group, module.ssh, ]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-module "aws_eks_cluster" {
-  source = "./modules/EKS"
-  kube_version = var.kube_version
-  create = local.create
-  #security_group_node = [module.security.id_security_cluster]
-  env = var.env
-  app_name = var.app_name
-  cluster_name = local.cluster_name
-  auth_mode = var.auth_mode
-  bootstrap_cluster_creator_admin_permissions = var.bootstrap_cluster_creator_admin_permissions
-  cidr_public_subnet = module.vpc.id_of_public_subnet
-  cidr_block = module.vpc.id_of_vpc
-  cidr_subnet = module.vpc.id_of_public_subnet
-  #cidr_subnet = module.vpc.id_of_private_subnet[*]
-  max_unavailable_node= var.max_unavailable_node
-  desired_size = var.desired_size
-  min_size = var.min_size
-  max_size = var.max_size
-
-  
-}
-*/
