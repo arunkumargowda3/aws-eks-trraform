@@ -13,3 +13,8 @@ output "id_ec2_security" {
   value = aws_security_group.ec2-sg[*].id
   
 }
+
+output "id_rds_security" {
+  value = aws_security_group.database_security_group[*].id
+  
+}

@@ -138,3 +138,8 @@ variable "instance_type_ec2" {
     default = "t2.micro"
 }
 
+#RDS DATABASE
+variable "engine_version" {
+  type = string
+  default ="8.0.35"
+}

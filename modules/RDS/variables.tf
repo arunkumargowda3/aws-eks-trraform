@@ -1,26 +1,16 @@
-variable "cidr_block_vpc" {
-  type        = string
-  description = "this is the cidr block to cretae  vpc"
-  sensitive   = true
-}
-
-variable "instance_tenancy" {
-  default = "default"
-}
-
-variable "cidr_public_subnet" {
-  type        = list(any)
-  description = "cidrs for public subnets"
-  sensitive   = true
-}
-variable "cidr_privite_subnet" {
-  type        = list(any)
-  description = "cidrs for private subnets"
-  sensitive   = true
-}
-
-variable "subnet_azs" {
+variable "subnet_id_rds" {
   type = list(any)
+  
+}
+variable "engine_version" {
+  type = string
+  #"8.0.35"
+}
+
+
+variable "vpc_security_group_ids_db" {
+  type = list(any)
+  
 }
 
 variable "app_name" {
@@ -28,7 +18,13 @@ variable "app_name" {
   description = "name of the app"
 }
 
+variable "subnet_azs" {
+   type    = list(any)
+}
+
 variable "env" {
   type        = string
   description = "name of the environment"
 }
+
+

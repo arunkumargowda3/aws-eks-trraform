@@ -18,7 +18,7 @@ resource "aws_eks_node_group" "eks_cluster_nodegroup" {
 
     id = var.aws_launch_template_id
     #when mention the version the starting letter shoud be capital i.e if default D or L
-    version = "Default"
+    version = 1
   }
 
   update_config {

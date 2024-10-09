@@ -73,6 +73,17 @@ module "aws_launch_template" {
   #depends_on                  = [module.security_group, module.ssh]
 }
 
+
+module "rds_mysql" {
+  source = "./modules/RDS"
+  subnet_id_rds = module.vpc.id_of_public_subnet
+  engine_version = var.engine_version
+  vpc_security_group_ids_db = module.security_group.id_rds_security
+  subnet_azs = var.subnet_azs
+  app_name = var.app_name
+  env = var.env
+}
+
 module "eks" {
   source = "./modules/EKS"
   # EKS Cluster details
