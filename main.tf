@@ -29,21 +29,21 @@ module "ssh" {
 module "security_group" {
   source     = "./modules/security_group"
   vpc_id     = module.vpc.id_of_vpc
-  app_name = var.app_name
+  app_name   = var.app_name
   depends_on = [module.vpc]
 }
 
 
 module "ec2" {
-  source = "./modules/EC2"
+  source             = "./modules/EC2"
   security_group_ec2 = module.security_group.id_ec2_security
-  key_name = module.ssh.key_name
-  ec2_subnets = module.vpc.id_of_public_subnet
-  app_name = var.app_name
-  env = var.env
-  ami_ec2 = var.ami_ec2
-  subnet_azs = var.subnet_azs
-  instance_type_ec2 = var.instance_type_ec2
+  key_name           = module.ssh.key_name
+  ec2_subnets        = module.vpc.id_of_public_subnet
+  app_name           = var.app_name
+  env                = var.env
+  ami_ec2            = var.ami_ec2
+  subnet_azs         = var.subnet_azs
+  instance_type_ec2  = var.instance_type_ec2
 }
 
 
@@ -55,7 +55,7 @@ module "iam" {
   app_name     = var.app_name
   env          = var.env
 
-  depends_on = [ module.vpc ]
+  depends_on = [module.vpc]
 
 }
 
@@ -75,13 +75,13 @@ module "aws_launch_template" {
 
 
 module "rds_mysql" {
-  source = "./modules/RDS"
-  subnet_id_rds = module.vpc.id_of_public_subnet
-  engine_version = var.engine_version
+  source                    = "./modules/RDS"
+  subnet_id_rds             = module.vpc.id_of_public_subnet
+  engine_version            = var.engine_version
   vpc_security_group_ids_db = module.security_group.id_rds_security
-  subnet_azs = var.subnet_azs
-  app_name = var.app_name
-  env = var.env
+  subnet_azs                = var.subnet_azs
+  app_name                  = var.app_name
+  env                       = var.env
 }
 
 module "eks" {
@@ -105,5 +105,5 @@ module "eks" {
   min_size               = var.min_size
   max_size               = var.max_size
   max_unavailable_node   = var.max_unavailable_node
- # depends_on             = [module.vpc, module.aws_launch_template, module.iam, module.security_group, module.ssh, ]
+  # depends_on             = [module.vpc, module.aws_launch_template, module.iam, module.security_group, module.ssh, ]
 }

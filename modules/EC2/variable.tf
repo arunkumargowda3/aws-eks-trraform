@@ -5,12 +5,12 @@ variable "ec2_subnets" {
 
 
 variable "security_group_ec2" {
-    type = list(any)
+  type = list(any)
 }
 
 
 variable "key_name" {
-    type = string
+  type = string
 }
 
 
@@ -20,11 +20,11 @@ variable "subnet_azs" {
 }
 
 variable "ami_ec2" {
-    type = string
+  type = string
 }
 
 variable "instance_type_ec2" {
-    type = string
+  type = string
 }
 
 variable "app_name" {

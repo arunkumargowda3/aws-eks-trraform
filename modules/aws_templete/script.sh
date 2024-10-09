@@ -10,6 +10,6 @@ sudo yum update -y
 sudo yum install httpd -y
 sudo systemctl enable httpd
 sudo systemctl start httpd
-echo "<html><body><div>Hello, world!</div></body></html>" > /var/www/html/index.html
+echo "<html><body><div>Welcome to EKS POC!</div></body></html>" > /var/www/html/index.html
 
 --boundary_string--

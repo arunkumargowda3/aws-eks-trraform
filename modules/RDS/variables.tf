@@ -1,6 +1,6 @@
 variable "subnet_id_rds" {
   type = list(any)
-  
+
 }
 variable "engine_version" {
   type = string
@@ -10,7 +10,7 @@ variable "engine_version" {
 
 variable "vpc_security_group_ids_db" {
   type = list(any)
-  
+
 }
 
 variable "app_name" {
@@ -19,7 +19,7 @@ variable "app_name" {
 }
 
 variable "subnet_azs" {
-   type    = list(any)
+  type = list(any)
 }
 
 variable "env" {

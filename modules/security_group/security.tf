@@ -152,8 +152,8 @@ resource "aws_security_group" "ec2-sg" {
   }
 
   tags = {
-    Name                                        = "${var.app_name}-${var.env}-ec2-secgroup"
-    envirnoment                                 = var.env
+    Name        = "${var.app_name}-${var.env}-ec2-secgroup"
+    envirnoment = var.env
   }
 
   lifecycle {
@@ -172,21 +172,25 @@ resource "aws_security_group" "database_security_group" {
   vpc_id      = var.vpc_id
 
   ingress {
-    description      = "mysql/aurora access"
-    from_port        = 3306
-    to_port          = 3306
-    protocol         = "tcp" 
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "mysql/aurora access"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = -1
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags   = {
+  tags = {
     Name = "database security group"
+  }
+  lifecycle {
+    ignore_changes = [ingress,
+    egress, ]
   }
 }
