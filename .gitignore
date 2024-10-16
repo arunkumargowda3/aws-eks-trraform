@@ -1,6 +1,6 @@
 .terraform
 .git
 .terraform.lock.hcl
-fusions-prod.pem
+*.pem
 terraform.tfstate 
 terraform.tfstate.backup
