@@ -1,6 +1,5 @@
 # IAM Policy for ASG, External DNS, ECR, AppMesh, and ALB Ingress access
 resource "aws_iam_policy" "nodegroup_iam_policy" {
-  #name = local.cluster_name
   name        = "${var.app_name}-${var.env}-nodegroupPolicy"
   description = "IAM Policy for ASG, External DNS, ECR, AppMesh, and ALB Ingress access"
 
@@ -9,49 +8,60 @@ resource "aws_iam_policy" "nodegroup_iam_policy" {
     Statement = [
       # ASG Access
       {
+        Effect = "Allow"
         Action = [
-          "autoscaling:*"
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations",
+          "autoscaling:DescribeScalingActivities",
+          "ec2:DescribeImages",
+          "ec2:DescribeInstanceTypes",
+          "ec2:DescribeLaunchTemplateVersions",
+          "ec2:GetInstanceTypesFromInstanceRequirements",
+          "eks:DescribeNodegroup"
         ]
-        Effect   = "Allow"
-        Resource = "*"
+        Resource = ["*"]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup"
+        ]
+        Resource = ["*"]
       },
       # External DNS Access
       {
-        Action = [
+        Effect   = "Allow"
+        Action   = [
           "route53:ChangeResourceRecordSets",
           "route53:ListHostedZones",
           "route53:ListResourceRecordSets"
         ]
-        Effect   = "Allow"
         Resource = "*"
       },
       # Full ECR Access
       {
-        Action = [
-          "ecr:*"
-        ]
         Effect   = "Allow"
+        Action   = ["ecr:*"]
         Resource = "*"
       },
       # AppMesh Access
       {
-        Action = [
-          "appmesh:*"
-        ]
         Effect   = "Allow"
+        Action   = ["appmesh:*"]
         Resource = "*"
       },
       # ALB Ingress Access
       {
-        Action = [
-          "elasticloadbalancing:*"
-        ]
         Effect   = "Allow"
+        Action   = ["elasticloadbalancing:*"]
         Resource = "*"
       }
     ]
   })
 }
+
 
 resource "aws_iam_role" "nodegroup_iam_role" {
   #count = local.create ? 1 : 0

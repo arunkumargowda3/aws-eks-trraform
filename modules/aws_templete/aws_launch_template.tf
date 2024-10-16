@@ -75,7 +75,7 @@ resource "aws_launch_template" "template_ec2_node" {
     # Do not specify availability zone here; it's set during the node group creation because its asingle templete 
   }
 */
-  user_data = base64encode(file("modules/aws_templete/script.sh"))
+  #user_data = base64encode(file("modules/aws_templete/script.sh"))
   tag_specifications {
     resource_type = "instance"
 

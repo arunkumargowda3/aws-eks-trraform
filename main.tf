@@ -70,7 +70,7 @@ module "aws_launch_template" {
   node_name                   = var.node_name
   cluster_name                = var.cluster_name
   env                         = var.env
-  #depends_on                  = [module.security_group, module.ssh]
+  depends_on                  = [module.security_group, module.ssh]
 }
 
 
@@ -105,5 +105,5 @@ module "eks" {
   min_size               = var.min_size
   max_size               = var.max_size
   max_unavailable_node   = var.max_unavailable_node
-  # depends_on             = [module.vpc, module.aws_launch_template, module.iam, module.security_group, module.ssh, ]
+  depends_on             = [module.vpc, module.aws_launch_template, module.iam, module.security_group, module.ssh, ]
 }
