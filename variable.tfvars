@@ -1,5 +1,5 @@
 aws_region                                  = "us-east-1"
-kube_version                                = "1.31"
+kube_version                                = "1.26"
 subnet_azs                                  = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d"]
 cidr_block_vpc                              = "10.0.0.0/16"
 cidr_public_subnet                          = ["10.0.3.0/24", "10.0.4.0/24"]
