@@ -17,9 +17,9 @@ resource "aws_db_instance" "db_instance" {
   engine              = "mysql"
   engine_version      = var.engine_version
   multi_az            = false
-  identifier          = "fusionscloud-db"
-  username            = "admin"
-  password            = "admin123"
+  identifier          = "fusionscloud-db"      #Db name
+  username            = base64decode(var.encoded_username)
+  password            = base64decode(var.encoded_password)
   instance_class      = "db.t3.micro"
   publicly_accessible = true
   allocated_storage   = 20

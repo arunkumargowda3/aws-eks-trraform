@@ -27,4 +27,15 @@ variable "env" {
   description = "name of the environment"
 }
 
+variable "encoded_username" {
+  default = "YWRtaW5vcHM="
+}
+
+variable "encoded_password" {
+  default = "YWRtaW5vcHNAMTIzNA=="
+}
+
+#echo -n 'dbpassword11' | base64
+#URL: https://www.base64encode.org
+#echo "YWRtaW5wYXNzd29yZA==" | base64 --decode
 
