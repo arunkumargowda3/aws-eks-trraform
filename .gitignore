@@ -2,5 +2,5 @@
 .git
 .terraform.lock.hcl
 *.pem
-terraform.tfstate 
-terraform.tfstate.backup
+terraform.tfstate* 
+terraform.tfstate.backup*

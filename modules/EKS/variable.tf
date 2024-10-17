@@ -111,7 +111,7 @@ variable "addons" {
   default = [
     {
       name    = "kube-proxy"
-      version = "v1.30.3-eksbuild.2"
+      version = "v1.29.7-eksbuild.9"
     },
     {
       name    = "vpc-cni"

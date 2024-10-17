@@ -2,7 +2,7 @@
 variable "kube_version" {
   description = "The version of the kubernates"
   type        = string
-  default     = 1.26
+  default     = 1.29
 
 }
 variable "aws_region" {
